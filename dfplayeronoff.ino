@@ -1,7 +1,7 @@
-//#include <SoftwareSerial.h>
+#include "SoftwareSerial.h"
 
-#define TRIGGER_PIN 2
-#define LED_PIN 13
+#define TRIGGER_PIN 12
+#define LED_PIN BUILTIN_LED
 
 #include <DFPlayer_Mini_Mp3.h>
 
@@ -11,7 +11,9 @@
 bool needslf = false;
 
 //SoftwareSerial sSerial(10, 11); // RX, TX
-#define PLSerial Serial1
+//#define PLSerial Serial1
+SoftwareSerial sSerial(0, 2); // RX, TX
+#define PLSerial sSerial
 
 
 //
@@ -22,10 +24,13 @@ void setup () {
   PLSerial.begin(9600);
   mp3_set_serial (PLSerial);	//set softwareSerial for DFPlayer-mini mp3 module
   delay(1);  //wait 1ms for mp3 module to set volume
-  mp3_set_volume (20);
+  mp3_set_volume (28);
   delay(1);  //wait 1ms for mp3 module to set volume
   mp3_set_reply(LOW);
   delayWithBlink(10000);
+  mp3_next();
+  delay(3000);
+  mp3_stop();
 }
 
 int cnt = 1;
