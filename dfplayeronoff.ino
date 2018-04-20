@@ -22,10 +22,13 @@ void setup () {
   PLSerial.begin(9600);
   mp3_set_serial (PLSerial);	//set softwareSerial for DFPlayer-mini mp3 module
   delay(1);  //wait 1ms for mp3 module to set volume
-  mp3_set_volume (20);
+  mp3_set_volume (28);
   delay(1);  //wait 1ms for mp3 module to set volume
   mp3_set_reply(LOW);
   delayWithBlink(10000);
+  mp3_next();
+  delay(3000);
+  mp3_stop();
 }
 
 int cnt = 1;
